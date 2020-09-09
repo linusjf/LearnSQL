@@ -3,32 +3,33 @@ DDL commands to set up tables in
 the database. Using the database test 
 installed with MySQL.
 */
-use test;
-Drop Table IF EXISTS Staff;
-Create Table Staff (
-  Emp_Id Integer (10) NOT NULL auto_increment primary key,
-  First_Name Varchar (20) NOT NULL,
-  Last_Name Varchar (20) NOT NULL,
-  Middle_Name Varchar (20) default '',
-  Birth_Date Date NOT NULL,
-  Salary Decimal (20, 4) NOT NULL,
-  Address Varchar (50) NOT NULL
+USE test;
+DROP TABLE IF EXISTS STAFF;
+CREATE TABLE STAFF (
+  EMP_ID INTEGER (10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  FIRST_NAME VARCHAR (20) NOT NULL,
+  LAST_NAME VARCHAR (20) NOT NULL,
+  MIDDLE_NAME VARCHAR (20) DEFAULT '',
+  BIRTH_DATE DATE NOT NULL,
+  SALARY DECIMAL (20, 4) NOT NULL,
+  ADDRESS VARCHAR (50) NOT NULL
 );
-Drop Table IF EXISTS Cohort;
-Create Table Cohort (
-  Student_Id Integer (10) NOT NULL auto_increment primary key,
-  First_Name Varchar (20) NOT NULL,
-  Last_Name Varchar (20) NOT NULL,
-  Middle_Name Varchar (20) default '',
-  Birth_Date Date,
-  State char (2) Not NULL,
-  City Varchar (50) NOT NULL,
-  County Varchar(50) NOT NULL
+DROP TABLE IF EXISTS COHORT;
+CREATE TABLE COHORT (
+  STUDENT_ID INTEGER (10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  FIRST_NAME VARCHAR (20) NOT NULL,
+  LAST_NAME VARCHAR (20) NOT NULL,
+  MIDDLE_NAME VARCHAR (20) DEFAULT '',
+  BIRTH_DATE DATE,
+  CITY_ID int(11) NOT NULL,
+  FOREIGN KEY (CITY_ID) REFERENCES STATE_CITIES(CITY_ID)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
 );
-Drop Table IF EXISTS Courses;
-Create Table Courses (
-  Course_Id Char (6) NOT NULL PRIMARY KEY,
-  Department_Id char (6) NOT NULL,
-  Title Varchar (20) Not NUll,
-  Description Varchar (30) default ''
+DROP TABLE IF EXISTS COURSES;
+CREATE TABLE COURSES (
+  COURSE_ID CHAR (6) NOT NULL PRIMARY KEY,
+  DEPARTMENT_ID CHAR (6) NOT NULL,
+  TITLE VARCHAR (20) NOT NULL,
+  DESCRIPTION VARCHAR (30) DEFAULT ''
 );
