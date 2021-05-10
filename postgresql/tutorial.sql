@@ -1,0 +1,38 @@
+
+CREATE TABLE IF NOT EXISTS cities (
+  abbr char(10) primary key, 
+  name varchar(80) NOT NULL,
+  location point NOT NULL,
+  create_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+TRUNCATE TABLE CITIES
+RESTART IDENTITY
+CASCADE;
+
+CREATE INDEX IF NOT EXISTS CITY_INDEX
+ON CITIES(NAME);
+
+CREATE TABLE IF NOT EXISTS weather (
+  id int GENERATED ALWAYS AS IDENTITY,
+  city char(10),
+  date date,
+  temp_lo int, -- low temperature
+  temp_hi int, -- high temperature
+  prcp real, -- precipitation
+  create_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(ID),
+  CONSTRAINT FK_CITY
+  FOREIGN KEY(CITY)
+  REFERENCES CITIES(ABBR)
+  ON DELETE RESTRICT
+);
+
+TRUNCATE TABLE WEATHER
+RESTART IDENTITY
+CASCADE;
+
+CREATE UNIQUE INDEX IF NOT EXISTS CITY_DATE 
+ON WEATHER(CITY,DATE);
