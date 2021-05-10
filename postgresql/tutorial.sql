@@ -16,10 +16,10 @@ ON CITIES(NAME);
 
 CREATE TABLE IF NOT EXISTS weather (
   id int GENERATED ALWAYS AS IDENTITY,
-  city char(10),
-  date date,
-  temp_lo int, -- low temperature
-  temp_hi int, -- high temperature
+  city char(10) NOT NULL,
+  date date NOT NULL,
+  temp_lo int NOT NULL, -- low temperature
+  temp_hi int NOT NULL, -- high temperature
   prcp real, -- precipitation
   create_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   update_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,3 +41,29 @@ CREATE OR REPLACE VIEW CITY_WEATHER
 AS SELECT a.NAME as CITY, DATE, TEMP_LO, TEMP_HI, PRCP 
 FROM CITIES as  a, WEATHER as b
 WHERE a.ABBR = b.CITY;
+
+INSERT INTO CITIES 
+VALUES ('SFO',
+  'San Francisco',
+  '37.7749,122.4194');
+INSERT INTO CITIES 
+VALUES ('HAY',
+'Hayward',
+'37.6688, 122.0810');
+INSERT INTO weather (city,date,
+  temp_hi,
+  temp_lo,
+  prcp)
+  VALUES ('SFO',
+'2020-11-27', 
+46, 
+50, 
+0.25);
+INSERT INTO weather (date,
+  city, 
+  temp_hi, 
+  temp_lo)
+ VALUES ('1994-11-29', 
+  'HAY', 
+  54, 
+  37);
