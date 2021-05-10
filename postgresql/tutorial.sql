@@ -67,3 +67,23 @@ INSERT INTO weather (date,
   'HAY', 
   54, 
   37);
+INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
+ VALUES ('SFO', 43, 57, 0.0, '1994-11-29');
+SELECT * FROM weather;
+SELECT * FROM city_weather
+ WHERE city = 'San Francisco' AND prcp > 0.0;
+SELECT city, (temp_hi+temp_lo)/2 AS temp_avg, date FROM city_weather;
+SELECT * FROM weather
+ ORDER BY city;
+SELECT * FROM weather
+ ORDER BY city, temp_lo;
+SELECT DISTINCT city
+ FROM weather;
+SELECT DISTINCT city
+ FROM weather
+ ORDER BY city;
+SELECT DISTINCT city
+ FROM city_weather;
+SELECT DISTINCT city
+ FROM city_weather
+ ORDER BY city;
