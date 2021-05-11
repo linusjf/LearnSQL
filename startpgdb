@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-# Starting the database
-pg_ctl -D $PREFIX/var/lib/postgresql start

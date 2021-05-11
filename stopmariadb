@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-mysqladmin -u u0_a286 -p shutdown
