@@ -87,3 +87,17 @@ SELECT DISTINCT city
 SELECT DISTINCT city
  FROM city_weather
  ORDER BY city;
+
+-- JOINS --
+
+SELECT * FROM WEATHER, CITIES 
+WHERE CITY = ABBR;
+SELECT city, name,temp_lo, temp_hi, prcp, date, location
+ FROM weather, cities
+ WHERE city = abbr;
+SELECT cities.name, weather.temp_lo, weather.temp_hi,
+ weather.prcp, weather.date, cities.location
+ FROM weather, cities
+ WHERE cities.abbr = weather.city;
+SELECT *
+ FROM weather INNER JOIN cities ON (weather.city = cities.abbr);
