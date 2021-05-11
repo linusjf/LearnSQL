@@ -4,7 +4,7 @@ CustomerName varchar(100) not NULL,
 ContactName varchar(100) NOT NULL,
 Address varchar(100) not NULL,
 City varchar(30) NOT NULL,
-PostalCode char(5) NOT NULL,
+PostalCode char(10) NOT NULL,
 Country varchar(50) NOT NULL,
 createDt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 updateDt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -22,6 +22,20 @@ createDt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 updateDt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 TRUNCATE TABLE ORDERS
+RESTART IDENTITY
+CASCADE;
+CREATE TABLE IF NOT EXISTS SUPPLIERS (
+SupplierID serial primary key,
+SupplierName varchar(100) not NULL,
+ContactName varchar(100) NOT NULL,
+Address varchar(100) not NULL,
+City varchar(30) NOT NULL,
+PostalCode char(10) NOT NULL,
+Country varchar(50) NOT NULL,
+createDt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+updateDt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+TRUNCATE TABLE SUPPLIERS
 RESTART IDENTITY
 CASCADE;
 INSERT INTO CUSTOMERS (CustomerName,ContactName,Address, City,PostalCode,
@@ -59,6 +73,27 @@ VALUES (
  (
 77,8,'1996-09-10',2
 );
+INSERT INTO SUPPLIERS (SupplierName,ContactName,Address, City,PostalCode,
+Country)
+VALUES ('Exotic Liquid',
+'Charlotte Cooper',
+'49, Gilbert Street',
+'London',
+'EC1 4SD',
+'UK'
+),('New Orleans Cajun Delight',
+'Shelley Burke',
+'P.O. Box 78934',
+'New Orleans',
+'70117',
+'USA'),
+('Grandma Kelly''s Homestead',
+  'Regina Murphy',
+  '707 Oxford Road',
+'Ann Arbor',
+'05023',
+'USA'
+);
 select * from customers;
 select * from orders;
 SELECT Customers.CustomerName, Orders.OrderID
@@ -70,3 +105,9 @@ FROM Customers A, Customers B
 WHERE A.CustomerID <> B.CustomerID
 AND A.City = B.City
 ORDER BY A.City;
+SELECT City FROM Customers UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+SELECT City FROM Customers UNION ALL
+SELECT City FROM Suppliers
+ORDER BY City;
