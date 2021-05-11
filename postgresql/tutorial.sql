@@ -109,3 +109,8 @@ SELECT *
  FROM weather W1, weather W2
  WHERE W1.temp_lo < W2.temp_lo
  AND W1.temp_hi > W2.temp_hi;
+SELECT *
+ FROM weather w, cities c
+ WHERE w.city = c.abbr;
+SELECT max(temp_lo) FROM weather;
+SELECT min(temp_hi) FROM weather;
