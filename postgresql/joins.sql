@@ -161,20 +161,18 @@ SELECT
   b.customername AS customername2,
   a.city
 FROM
-  customers a,
-  customers b
+  customers AS a,
+  customers AS b
 WHERE
   a.customerid <> b.customerid
   AND a.city = b.city
 ORDER BY
   a.city;
-SELECT
-  city
+SELECT city
 FROM
   customers
 UNION
-SELECT
-  city
+SELECT city
 FROM
   suppliers
 ORDER BY
@@ -225,7 +223,7 @@ WHERE
 ORDER BY
   city;
 SELECT
-  'Customer' AS TYPE,
+  'Customer' AS type,
   contactname,
   city,
   country

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+function usage() {
+echo "Usage: $0 <dir>|<file>"
+echo "dir - directory"
+echo "file - sql file"
+exit 1
+}
+
+if [[ $# -ne 1 ]];
+then
+  usage
+fi
+
+if [[ ! -d "$1" ]] && [[ ! -f "$1" ]]
+then 
+  usage
+fi
+
+declare -i exitCode=0
+if [[ -d "$1" ]];
+then
+  echo "Processing directory $1"
+  rm ./"$1"/*.lint &> /dev/null
+  find "$1" -name "*.sql" \
+    | parallel "sql-lint {} >> {}.lint"
+  find "$1" -name "*.sql" \
+    | parallel "sqlfluff lint --ignore parsing {} >> {}.lint"
+  exit "$?"
+fi
+
+if [[ -f "$1" ]];
+then
+  echo "Processing file $1"
+  rm ./"$1".lint &> /dev/null
+  sql-lint "$1" >> "$1".lint
+  sqlfluff lint --ignore parsing "$1" >> "$1".lint
+  exit "$?"
+fi
