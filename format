@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+function usage() {
+echo "Usage: $0 <dir>"
+echo "dir - directory"
+exit 1
+}
+
+if [[ $# -ne 1 ]];
+then
+  usage
+fi
+
+if [[ ! -d "$1" ]]
+then 
+  usage
+fi
+echo "Processing directory $1"
+find "$1" -name "*.sql" \
+       | parallel sql-formatter-cli -i {} -o {} -s "sql"
+exit "$?"
