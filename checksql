@@ -1,11 +1,35 @@
 #!/usr/bin/env bash
+
+function usage() {
+echo "Usage: $0 <dir>|<file>"
+echo "dir - directory"
+echo "file - sql file"
+exit 1
+}
+
+if [[ $# -ne 1 ]];
+then
+  usage
+fi
+
+if [[ ! -d "$1" ]] && [[ ! -f "$1" ]]
+then 
+  usage
+fi
+
 declare -i exitCode=0
-rm ./check.errors
-for f in *.sql
-do
-  sqlcheck -c -v -f "$f" | tee -a check.errors
-  exitCode="$exitCode"+"$?"
-done
-exit "$exitCode"
+rm ./*.errors &> /dev/null
+if [[ -d "$1" ]];
+then
+  echo "Processing directory $1"
+  find "$1" -name "*.sql" \
+    | parallel "sqlcheck -c -v -f {} >> {}.errors"
+  exit "$?"
+fi
 
-
+if [[ -f "$1" ]];
+then
+  echo "Processing file $1"
+  sqlcheck -c -v -f "$1" >> "$1".errors
+  exit "$?"
+fi
