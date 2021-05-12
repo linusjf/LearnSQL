@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 function usage() {
-echo "Usage: $0 <dir>"
+echo "Usage: $0 <dir>|<file>"
 echo "dir - directory"
+echo "file - sql file"
 exit 1
 }
 
@@ -11,11 +12,22 @@ then
   usage
 fi
 
-if [[ ! -d "$1" ]]
+if [[ ! -d "$1" ]] && [[ ! -f "$1" ]]
 then 
   usage
 fi
-echo "Processing directory $1"
-find "$1" -name "*.sql" \
-       | parallel sql-formatter-cli -i {} -o {} -s "sql"
-exit "$?"
+
+if [[ -d "$1" ]];
+then
+  echo "Processing directory $1"
+  find "$1" -name "*.sql" \
+    | parallel sql-formatter-cli -i {} -o {} -s "sql"
+      exit "$?"
+fi
+
+if [[ -f "$1" ]];
+then
+  echo "Processing file $1"
+  sql-formatter-cli -i "$1" -o "$1" -s "sql"
+  exit "$?"
+fi
