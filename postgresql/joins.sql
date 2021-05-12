@@ -266,3 +266,12 @@ FROM
   LEFT JOIN orders ON customers.customerid = orders.customerid
 ORDER BY
   customers.customername;
+SELECT
+  orders.orderid,
+  employees.lastname,
+  employees.firstname
+FROM
+  orders
+  RIGHT JOIN employees ON orders.employeeid = employees.employeeid
+ORDER BY
+  orders.orderid;
