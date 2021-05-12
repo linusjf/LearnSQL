@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS employees (
   lastname varchar(40) NOT NULL,
   firstname varchar(40) NOT NULL,
   birthdate date NOT NULL,
-  photo bytea,
+  photo BYTEA,
   createdt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updatedt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -136,15 +136,10 @@ VALUES
   ('United Package', '(503) 555-3199'),
   ('Federal Shipping', '(503) 555-9931');
 INSERT INTO
-  employees (lastname, 
-    firstname,
-    birthdate)
-VALUES('Davolio', 'Nancy',
-'1968-08-12'),
-  ('Fuller', 'Andrew',
-'1952-02-19'),
-  ('Leverling', 'Janet',
-  '1963-08-30');
+  employees (lastname, firstname, birthdate)
+VALUES('Davolio', 'Nancy', '1968-08-12'),
+  ('Fuller', 'Andrew', '1952-02-19'),
+  ('Leverling', 'Janet', '1963-08-30');
 SELECT
   *
 FROM
@@ -263,7 +258,11 @@ FROM
     )
     INNER JOIN shippers ON orders.shipperid = shippers.shipperid
   );
-SELECT Customers.CustomerName, Orders.OrderID
-FROM Customers
-LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-ORDER BY Customers.CustomerName;
+SELECT
+  customers.customername,
+  orders.orderid
+FROM
+  customers
+  LEFT JOIN orders ON customers.customerid = orders.customerid
+ORDER BY
+  customers.customername;
