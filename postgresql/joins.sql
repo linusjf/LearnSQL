@@ -40,6 +40,16 @@ CREATE TABLE IF NOT EXISTS shippers (
   updatedt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 TRUNCATE TABLE shippers RESTART IDENTITY CASCADE;
+CREATE TABLE IF NOT EXISTS employees (
+  employeeid serial PRIMARY KEY,
+  lastname varchar(40) NOT NULL,
+  firstname varchar(40) NOT NULL,
+  birthdate date NOT NULL,
+  photo bytea,
+  createdt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+TRUNCATE TABLE employees RESTART IDENTITY CASCADE;
 INSERT INTO
   customers (
     customername,
@@ -125,6 +135,16 @@ VALUES
   ('Speedy Express', '(503) 555-9831'),
   ('United Package', '(503) 555-3199'),
   ('Federal Shipping', '(503) 555-9931');
+INSERT INTO
+  employees (lastname, 
+    firstname,
+    birthdate)
+VALUES('Davolio', 'Nancy',
+'1968-08-12'),
+  ('Fuller', 'Andrew',
+'1952-02-19'),
+  ('Leverling', 'Janet',
+  '1963-08-30');
 SELECT
   *
 FROM
@@ -243,3 +263,7 @@ FROM
     )
     INNER JOIN shippers ON orders.shipperid = shippers.shipperid
   );
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
