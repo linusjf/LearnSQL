@@ -1,14 +1,14 @@
 CREATE TABLE IF NOT EXISTS cities (
-  abbr char(10) primary key,
+  abbr char(10) PRIMARY KEY,
   name varchar(80) NOT NULL,
-  location point NOT NULL,
-  create_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  update_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  LOCATION POINT NOT NULL,
+  create_dt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_dt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-TRUNCATE TABLE CITIES RESTART IDENTITY CASCADE;
-CREATE INDEX IF NOT EXISTS CITY_INDEX ON CITIES(NAME);
+TRUNCATE TABLE cities RESTART IDENTITY CASCADE;
+CREATE INDEX IF NOT EXISTS city_index ON cities(name);
 CREATE TABLE IF NOT EXISTS weather (
-  id int GENERATED ALWAYS AS IDENTITY,
+  id int GENERATED always AS IDENTITY,
   city char(10) NOT NULL,
   date date NOT NULL,
   temp_lo int NOT NULL,
@@ -17,32 +17,32 @@ CREATE TABLE IF NOT EXISTS weather (
   -- high temperature
   prcp real,
   -- precipitation
-  create_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  update_dt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY(ID),
-  CONSTRAINT FK_CITY FOREIGN KEY(CITY) REFERENCES CITIES(ABBR) ON DELETE RESTRICT
+  create_dt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_dt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY key(id),
+  CONSTRAINT fk_city FOREIGN key(city) REFERENCES cities(abbr) ON DELETE RESTRICT
 );
-TRUNCATE TABLE WEATHER RESTART IDENTITY CASCADE;
-CREATE UNIQUE INDEX IF NOT EXISTS CITY_DATE ON WEATHER(CITY, DATE);
+TRUNCATE TABLE weather RESTART IDENTITY CASCADE;
+CREATE UNIQUE INDEX IF NOT EXISTS city_date ON weather(city, DATE);
 CREATE
-OR REPLACE VIEW CITY_WEATHER AS
+OR REPLACE VIEW city_weather AS
 SELECT
-  a.NAME as CITY,
+  a.name AS city,
   DATE,
-  TEMP_LO,
-  TEMP_HI,
-  PRCP
+  temp_lo,
+  temp_hi,
+  prcp
 FROM
-  CITIES as a,
-  WEATHER as b
+  cities AS a,
+  weather AS b
 WHERE
-  a.ABBR = b.CITY;
+  a.abbr = b.city;
 INSERT INTO
-  CITIES
+  cities
 VALUES
   ('SFO', 'San Francisco', '37.7749,122.4194');
 INSERT INTO
-  CITIES
+  cities
 VALUES
   ('HAY', 'Hayward', '37.6688, 122.0810');
 INSERT INTO
@@ -111,10 +111,10 @@ ORDER BY
 SELECT
   *
 FROM
-  WEATHER,
-  CITIES
+  weather,
+  cities
 WHERE
-  CITY = ABBR;
+  city = abbr;
 SELECT
   city,
   name,
@@ -122,7 +122,7 @@ SELECT
   temp_hi,
   prcp,
   date,
-  location
+  LOCATION
 FROM
   weather,
   cities
@@ -151,18 +151,18 @@ FROM
   weather
   LEFT OUTER JOIN cities ON (weather.city = cities.abbr);
 SELECT
-  W1.city,
-  W1.temp_lo AS low,
-  W1.temp_hi AS high,
-  W2.city,
-  W2.temp_lo AS low,
-  W2.temp_hi AS high
+  w1.city,
+  w1.temp_lo AS low,
+  w1.temp_hi AS high,
+  w2.city,
+  w2.temp_lo AS low,
+  w2.temp_hi AS high
 FROM
-  weather W1,
-  weather W2
+  weather w1,
+  weather w2
 WHERE
-  W1.temp_lo < W2.temp_lo
-  AND W1.temp_hi > W2.temp_hi;
+  w1.temp_lo < w2.temp_lo
+  AND w1.temp_hi > w2.temp_hi;
 SELECT
   *
 FROM

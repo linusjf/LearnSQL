@@ -1,38 +1,41 @@
-/* 
+/*
 DDL commands to set up tables in
-the database. Using the database test 
+the database. Using the database test
 installed with MySQL.
 */
 USE test;
-DROP TABLE IF EXISTS DEPARTMENTS;
-CREATE TABLE DEPARTMENTS (
-  DEPT_ID CHAR (6) NOT NULL PRIMARY KEY,
-  DEPT_NAME VARCHAR (20) NOT NULL
+DROP TABLE IF EXISTS departments;
+CREATE TABLE departments (
+  dept_id CHAR (6) NOT NULL PRIMARY KEY,
+  dept_name VARCHAR (20) NOT NULL
 );
-DROP TABLE IF EXISTS SUITE;
-DROP TABLE IF EXISTS COMPLEX;
-CREATE TABLE COMPLEX (
-  BLDG_ID INTEGER(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  BLDG_NAME VARCHAR (20) NOT NULL
+DROP TABLE IF EXISTS suite;
+DROP TABLE IF EXISTS complex;
+CREATE TABLE complex (
+  bldg_id integer(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  bldg_name VARCHAR (20) NOT NULL
 );
-CREATE TABLE SUITE (
-  BLDG_ID INTEGER(3) NOT NULL,
-  ROOM_ID CHAR(6) NOT NULL,
-  ROOM_NAME VARCHAR (20) NOT NULL,
-  ROOM_LEVEL TINYINT UNSIGNED NOT NULL,
-  SEATING_CAPACITY INTEGER (3) NOT NULL,
-  PRIMARY KEY (BLDG_ID, ROOM_ID),
-  FOREIGN KEY (BLDG_ID) REFERENCES COMPLEX(BLDG_ID) ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE suite (
+  bldg_id integer(3) NOT NULL,
+  room_id char(6) NOT NULL,
+  room_name VARCHAR (20) NOT NULL,
+  room_level TINYINT UNSIGNED NOT NULL,
+  seating_capacity INTEGER (3) NOT NULL,
+  PRIMARY KEY (
+    bldg_id,
+    room_id
+  ),
+  FOREIGN KEY (bldg_id) REFERENCES complex(bldg_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-CREATE VIEW ALL_ROOMS AS (
+CREATE VIEW all_rooms AS (
   SELECT
-    BLDG_NAME,
-    ROOM_NAME,
-    ROOM_LEVEL,
-    SEATING_CAPACITY
+    bldg_name,
+    room_name,
+    room_level,
+    seating_capacity
   FROM
-    COMPLEX,
-    SUITE
+    complex,
+    suite
   WHERE
-    COMPLEX.BLDG_ID = SUITE.BLDG_ID
+    complex.bldg_id = suite.bldg_id
 );

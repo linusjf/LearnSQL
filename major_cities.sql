@@ -3,238 +3,244 @@ USE test;
 -- Table structure for table `us_states`
 --
 SET
-  FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS US_STATES;
-CREATE TABLE US_STATES (
-    STATE_CODE char(2) NOT NULL,
-    STATE_NAME varchar(50) NOT NULL,
-    PRIMARY KEY (STATE_CODE)
+  foreign_key_checks = 0;
+DROP TABLE IF EXISTS us_states;
+CREATE TABLE us_states (
+    state_code char(2) NOT NULL,
+    state_name varchar(50) NOT NULL,
+    PRIMARY KEY (state_code)
   );
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('AL', 'Alabama');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('AK', 'Alaska');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('AZ', 'Arizona');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('AR', 'Arkansas');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('CA', 'California');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('CO', 'Colorado');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('CT', 'Connecticut');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('DE', 'Delaware');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('DC', 'District of Columbia');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('FL', 'Florida');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('GA', 'Georgia');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('HI', 'Hawaii');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('ID', 'Idaho');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('IL', 'Illinois');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('IN', 'Indiana');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('IA', 'Iowa');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('KS', 'Kansas');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('KY', 'Kentucky');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('LA', 'Louisiana');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('ME', 'Maine');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MD', 'Maryland');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MA', 'Massachusetts');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MI', 'Michigan');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MN', 'Minnesota');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MS', 'Mississippi');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MO', 'Missouri');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('MT', 'Montana');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NE', 'Nebraska');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NV', 'Nevada');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NH', 'New Hampshire');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NJ', 'New Jersey');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NM', 'New Mexico');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NY', 'New York');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('NC', 'North Carolina');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('ND', 'North Dakota');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('OH', 'Ohio');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('OK', 'Oklahoma');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('OR', 'Oregon');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('PA', 'Pennsylvania');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('PR', 'Puerto Rico');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('RI', 'Rhode Island');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('SC', 'South Carolina');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('SD', 'South Dakota');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('TN', 'Tennessee');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('TX', 'Texas');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('UT', 'Utah');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('VT', 'Vermont');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('VA', 'Virginia');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('WA', 'Washington');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('WV', 'West Virginia');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('WI', 'Wisconsin');
 INSERT INTO
-  US_STATES (STATE_CODE, STATE_NAME)
+  us_states (state_code, state_name)
 VALUES
   ('WY', 'Wyoming');
 --
   -- Table structure for table `us_cities`
   --
-  DROP TABLE IF EXISTS US_CITIES;
-CREATE TABLE US_CITIES (
-    CITY_ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    STATE_CODE CHAR(2) NOT NULL,
-    CITY varchar(50) NOT NULL,
-    COUNTY varchar(50) NOT NULL,
-    LATITUDE double NOT NULL,
-    LONGITUDE double NOT NULL,
-    FOREIGN KEY (STATE_CODE) REFERENCES US_STATES(STATE_CODE) ON DELETE RESTRICT ON UPDATE CASCADE
+  DROP TABLE IF EXISTS us_cities;
+CREATE TABLE us_cities (
+    city_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    state_code char(2) NOT NULL,
+    city varchar(50) NOT NULL,
+    county varchar(50) NOT NULL,
+    latitude DOUBLE NOT NULL,
+    longitude DOUBLE NOT NULL,
+    FOREIGN KEY (state_code) REFERENCES us_states(state_code) ON DELETE RESTRICT ON UPDATE CASCADE
   );
 SET
-  FOREIGN_KEY_CHECKS = 1;
+  foreign_key_checks = 1;
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   (
     'NY',
@@ -244,7 +250,13 @@ VALUES
     -73.996705
   );
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   (
     'CA',
@@ -254,19 +266,43 @@ VALUES
     -118.247896
   );
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   ('IL', 'Chicago', 'Cook', 41.885847, -87.618123);
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   ('TX', 'Houston', 'Harris', 29.7652, -95.3657);
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   ('AZ', 'Phoenix', 'Maricopa', 33.451, -112.0685);
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   (
     'PA',
@@ -276,7 +312,13 @@ VALUES
     -75.0141
   );
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   (
     'TX',
@@ -286,7 +328,13 @@ VALUES
     -98.526352
   );
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   (
     'CA',
@@ -296,11 +344,23 @@ VALUES
     -117.159316
   );
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   ('TX', 'Dallas', 'Dallas', 32.790439, -96.80439);
 INSERT INTO
-  US_CITIES (STATE_CODE, CITY, COUNTY, LATITUDE, LONGITUDE)
+  us_cities (
+    state_code,
+    city,
+    county,
+    latitude,
+    longitude
+  )
 VALUES
   (
     'CA',

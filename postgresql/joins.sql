@@ -1,47 +1,47 @@
-create table if not exists CUSTOMERS (
-  CUSTOMERID serial primary key,
-  CUSTOMERNAME VARCHAR(100) not null,
-  CONTACTNAME VARCHAR(100) not null,
-  ADDRESS VARCHAR(100) not null,
-  CITY VARCHAR(30) not null,
-  POSTALCODE CHAR(10) not null,
-  COUNTRY VARCHAR(50) not null,
-  CREATEDT timestamp not null default current_timestamp,
-  UPDATEDT timestamp not null default current_timestamp
+CREATE TABLE IF NOT EXISTS customers (
+  customerid serial PRIMARY KEY,
+  customername varchar(100) NOT NULL,
+  contactname varchar(100) NOT NULL,
+  address varchar(100) NOT NULL,
+  city varchar(30) NOT NULL,
+  postalcode char(10) NOT NULL,
+  country varchar(50) NOT NULL,
+  createdt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-truncate table CUSTOMERS restart identity cascade;
-create table if not exists ORDERS (
-  ORDERID bigserial primary key,
-  CUSTOMERID integer not null,
-  EMPLOYEEID integer not null,
-  ORDERDATE date not null,
-  SHIPPERID integer not null,
-  CREATEDT timestamp not null default current_timestamp,
-  UPDATEDT timestamp not null default current_timestamp
+TRUNCATE TABLE customers RESTART IDENTITY CASCADE;
+CREATE TABLE IF NOT EXISTS orders (
+  orderid BIGSERIAL PRIMARY KEY,
+  customerid integer NOT NULL,
+  employeeid integer NOT NULL,
+  orderdate date NOT NULL,
+  shipperid integer NOT NULL,
+  createdt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-truncate table ORDERS restart identity cascade;
-create table if not exists SUPPLIERS (
-  SUPPLIERID serial primary key,
-  SUPPLIERNAME VARCHAR(100) not null,
-  CONTACTNAME VARCHAR(100) not null,
-  ADDRESS VARCHAR(100) not null,
-  CITY VARCHAR(30) not null,
-  POSTALCODE CHAR(10) not null,
-  COUNTRY VARCHAR(50) not null,
-  CREATEDT timestamp not null default current_timestamp,
-  UPDATEDT timestamp not null default current_timestamp
+TRUNCATE TABLE orders RESTART IDENTITY CASCADE;
+CREATE TABLE IF NOT EXISTS suppliers (
+  supplierid serial PRIMARY KEY,
+  suppliername varchar(100) NOT NULL,
+  contactname varchar(100) NOT NULL,
+  address varchar(100) NOT NULL,
+  city varchar(30) NOT NULL,
+  postalcode char(10) NOT NULL,
+  country varchar(50) NOT NULL,
+  createdt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-truncate table SUPPLIERS restart identity cascade;
-insert into
-  CUSTOMERS (
-    CUSTOMERNAME,
-    CONTACTNAME,
-    ADDRESS,
-    CITY,
-    POSTALCODE,
-    COUNTRY
+TRUNCATE TABLE suppliers RESTART IDENTITY CASCADE;
+INSERT INTO
+  customers (
+    customername,
+    contactname,
+    address,
+    city,
+    postalcode,
+    country
   )
-values
+VALUES
   (
     'Alfreds Futterkiste',
     'Maria Anders',
@@ -66,27 +66,27 @@ values
     '05023',
     'Mexico'
   );
-insert into
-  ORDERS (
-    CUSTOMERID,
-    EMPLOYEEID,
-    ORDERDATE,
-    SHIPPERID
+INSERT INTO
+  orders (
+    customerid,
+    employeeid,
+    orderdate,
+    shipperid
   )
-values
+VALUES
   (2, 7, '1996-09-08', 3),
   (37, 3, '1996-09-09', 1),
   (77, 8, '1996-09-10', 2);
-insert into
-  SUPPLIERS (
-    SUPPLIERNAME,
-    CONTACTNAME,
-    ADDRESS,
-    CITY,
-    POSTALCODE,
-    COUNTRY
+INSERT INTO
+  suppliers (
+    suppliername,
+    contactname,
+    address,
+    city,
+    postalcode,
+    country
   )
-values
+VALUES
   (
     'Exotic Liquid',
     'Charlotte Cooper',
@@ -111,109 +111,109 @@ values
     '05023',
     'USA'
   );
-select
+SELECT
   *
-from
-  CUSTOMERS;
-select
+FROM
+  customers;
+SELECT
   *
-from
-  ORDERS;
-select
-  CUSTOMERS.CUSTOMERNAME,
-  ORDERS.ORDERID
-from
-  CUSTOMERS full
-  outer join ORDERS on CUSTOMERS.CUSTOMERID = ORDERS.CUSTOMERID
-order by
-  CUSTOMERS.CUSTOMERNAME;
-select
-  A.CUSTOMERNAME as CUSTOMERNAME1,
-  B.CUSTOMERNAME as CUSTOMERNAME2,
-  A.CITY
-from
-  CUSTOMERS A,
-  CUSTOMERS B
-where
-  A.CUSTOMERID <> B.CUSTOMERID
-  and A.CITY = B.CITY
-order by
-  A.CITY;
-select
-  CITY
-from
-  CUSTOMERS
-union
-select
-  CITY
-from
-  SUPPLIERS
-order by
-  CITY;
-select
-  CITY
-from
-  CUSTOMERS
-union all
-select
-  CITY
-from
-  SUPPLIERS
-order by
-  CITY;
-select
-  CITY,
-  COUNTRY
-from
-  CUSTOMERS
-where
-  COUNTRY = 'Germany'
-union
-select
-  CITY,
-  COUNTRY
-from
-  SUPPLIERS
-where
-  COUNTRY = 'Germany'
-order by
-  CITY;
-select
-  CITY,
-  COUNTRY
-from
-  CUSTOMERS
-where
-  COUNTRY = 'Germany'
-union all
-select
-  CITY,
-  COUNTRY
-from
-  SUPPLIERS
-where
-  COUNTRY = 'Germany'
-order by
-  CITY;
-select
-  'Customer' as type,
-  CONTACTNAME,
-  CITY,
-  COUNTRY
-from
-  CUSTOMERS
-union
-select
+FROM
+  orders;
+SELECT
+  customers.customername,
+  orders.orderid
+FROM
+  customers FULL
+  OUTER JOIN orders ON customers.customerid = orders.customerid
+ORDER BY
+  customers.customername;
+SELECT
+  a.customername AS customername1,
+  b.customername AS customername2,
+  a.city
+FROM
+  customers a,
+  customers b
+WHERE
+  a.customerid <> b.customerid
+  AND a.city = b.city
+ORDER BY
+  a.city;
+SELECT
+  city
+FROM
+  customers
+UNION
+SELECT
+  city
+FROM
+  suppliers
+ORDER BY
+  city;
+SELECT
+  city
+FROM
+  customers
+UNION ALL
+SELECT
+  city
+FROM
+  suppliers
+ORDER BY
+  city;
+SELECT
+  city,
+  country
+FROM
+  customers
+WHERE
+  country = 'Germany'
+UNION
+SELECT
+  city,
+  country
+FROM
+  suppliers
+WHERE
+  country = 'Germany'
+ORDER BY
+  city;
+SELECT
+  city,
+  country
+FROM
+  customers
+WHERE
+  country = 'Germany'
+UNION ALL
+SELECT
+  city,
+  country
+FROM
+  suppliers
+WHERE
+  country = 'Germany'
+ORDER BY
+  city;
+SELECT
+  'Customer' AS TYPE,
+  contactname,
+  city,
+  country
+FROM
+  customers
+UNION
+SELECT
   'Supplier',
-  CONTACTNAME,
-  CITY,
-  COUNTRY
-from
-  SUPPLIERS;
-select
-  ORDERS.ORDERID,
-  CUSTOMERS.CUSTOMERNAME,
-  ORDERS.ORDERDATE
-from
-  ORDERS
-  inner join CUSTOMERS on ORDERS.CUSTOMERID = CUSTOMERS.CUSTOMERID;
+  contactname,
+  city,
+  country
+FROM
+  suppliers;
+SELECT
+  orders.orderid,
+  customers.customername,
+  orders.orderdate
+FROM
+  orders
+  INNER JOIN customers ON orders.customerid = customers.customerid;

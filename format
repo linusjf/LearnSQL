@@ -21,6 +21,8 @@ if [[ -d "$1" ]];
 then
   echo "Processing directory $1"
   find "$1" -name "*.sql" \
+    | parallel sqlformat -k "upper" -i "lower" -r --indent_width 2 --indent_after_first --indent_columns -a -s --wrap_after 80 {} -o {}
+  find "$1" -name "*.sql" \
     | parallel sql-formatter-cli -i {} -o {} -s "sql"
       exit "$?"
 fi
@@ -28,6 +30,7 @@ fi
 if [[ -f "$1" ]];
 then
   echo "Processing file $1"
+  sqlformat -k "upper" -i "lower" -r --indent_width 2 --indent_after_first --indent_columns -a -s --wrap_after 80 "$1" -o "$1"
   sql-formatter-cli -i "$1" -o "$1" -s "sql"
   exit "$?"
 fi
