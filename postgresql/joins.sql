@@ -153,7 +153,7 @@ SELECT
   orders.orderid
 FROM
   customers FULL
-  OUTER JOIN orders ON customers.customerid = orders.customerid
+  OUTER JOIN orders USING (customerid)
 ORDER BY
   customers.customername;
 SELECT
@@ -245,7 +245,7 @@ SELECT
   orders.orderdate
 FROM
   orders
-  INNER JOIN customers ON orders.customerid = customers.customerid;
+  INNER JOIN customers USING (customerid);
 SELECT
   orders.orderid,
   customers.customername,
@@ -254,16 +254,16 @@ FROM
   (
     (
       orders
-      INNER JOIN customers ON orders.customerid = customers.customerid
+      INNER JOIN customers USING (customerid)
     )
-    INNER JOIN shippers ON orders.shipperid = shippers.shipperid
+    INNER JOIN shippers USING (shipperid)
   );
 SELECT
   customers.customername,
   orders.orderid
 FROM
   customers
-  LEFT JOIN orders ON customers.customerid = orders.customerid
+  LEFT JOIN orders USING (customerid)
 ORDER BY
   customers.customername;
 SELECT
@@ -272,6 +272,22 @@ SELECT
   employees.firstname
 FROM
   orders
-  RIGHT JOIN employees ON orders.employeeid = employees.employeeid
+  RIGHT JOIN employees USING (employeeid)
 ORDER BY
   orders.orderid;
+SELECT
+  customers.customername,
+  orders.orderid
+FROM
+  customers FULL
+  OUTER JOIN orders ON customers.customerid = orders.customerid
+ORDER BY
+  customers.customername;
+SELECT
+  customers.customername,
+  orders.orderid
+FROM
+  customers FULL
+  OUTER JOIN orders USING (customerid)
+ORDER BY
+  customers.customername;
