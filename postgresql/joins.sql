@@ -168,11 +168,13 @@ WHERE
   AND a.city = b.city
 ORDER BY
   a.city;
-SELECT city
+SELECT
+  city
 FROM
   customers
 UNION
-SELECT city
+SELECT
+  city
 FROM
   suppliers
 ORDER BY
@@ -223,7 +225,7 @@ WHERE
 ORDER BY
   city;
 SELECT
-  'Customer' AS type,
+  'Customer' AS TYPE,
   contactname,
   city,
   country
