@@ -37,6 +37,13 @@ FROM
   weather AS b
 WHERE
   a.abbr = b.city;
+ALTER TABLE
+  cities
+ADD
+  COLUMN IF NOT EXISTS population real,
+ADD
+  COLUMN IF NOT EXISTS elevation int;
+CREATE TABLE IF NOT EXISTS capitals (state char(2) UNIQUE NOT NULL) INHERITS (cities);
 INSERT INTO
   cities
 VALUES
@@ -57,6 +64,40 @@ INSERT INTO
   weather (city, temp_lo, temp_hi, prcp, date)
 VALUES
   ('SFO', 43, 57, 0.0, '1994-11-29');
+INSERT INTO
+  cities (abbr, name, LOCATION, population, elevation)
+VALUES
+  (
+    'VEGAS', 'Las Vegas',
+    '36.114647,-115.172813',
+    2699000,
+    2174
+  ),
+  (
+    'MAR',
+    'Mariposa',
+    '37.4849377,-119.9662843',
+    2173,
+    1753
+  );
+INSERT INTO
+  capitals (
+    abbr,
+    name,
+    LOCATION,
+    population,
+    elevation,
+    state
+  )
+VALUES
+  (
+    'MAD',
+    'Madison',
+    '43.07305,-89.401230',
+    263332,
+    845,
+    'WI'
+  );
 SELECT
   *
 FROM
@@ -239,3 +280,17 @@ SELECT
   *
 FROM
   city_weather;
+SELECT
+  name,
+  elevation
+FROM
+  cities
+WHERE
+  elevation > 500;
+SELECT
+  name,
+  elevation
+FROM
+  ONLY cities
+WHERE
+  elevation > 500;

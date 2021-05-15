@@ -87,3 +87,12 @@ FROM
   ) AS ss
 WHERE
   pos < 3;
+SELECT
+  sum(salary) OVER w,
+  avg(salary) OVER w
+FROM
+  empsalary WINDOW w AS (
+    PARTITION BY depname
+    ORDER BY
+      salary DESC
+  );
