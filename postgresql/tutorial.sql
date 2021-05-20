@@ -57,9 +57,9 @@ INSERT INTO
 VALUES
   ('SFO', '2020-11-27', 46, 50, 0.25);
 INSERT INTO
-  weather (date, city, temp_hi, temp_lo)
+  weather (date, city, temp_hi, temp_lo, prcp)
 VALUES
-  ('1994-11-29', 'HAY', 54, 37);
+  ('1994-11-29', 'HAY', 54, 37, 2.05);
 INSERT INTO
   weather (city, temp_lo, temp_hi, prcp, date)
 VALUES
@@ -68,7 +68,8 @@ INSERT INTO
   cities (abbr, name, LOCATION, population, elevation)
 VALUES
   (
-    'VEGAS', 'Las Vegas',
+    'VEGAS',
+    'Las Vegas',
     '36.114647,-115.172813',
     2699000,
     2174
@@ -272,10 +273,10 @@ SELECT
   *
 FROM
   city_weather;
-DELETE FROM
-  weather
-WHERE
-  city = 'HAY';
+--DELETE FROM
+  --weather
+  --WHERE
+  --city = 'HAY';
 SELECT
   *
 FROM
@@ -294,3 +295,25 @@ FROM
   ONLY cities
 WHERE
   elevation > 500;
+SELECT
+  name,
+  (
+    SELECT
+      max(prcp)
+    FROM
+      weather
+    WHERE
+      weather.city = cities.abbr
+  )
+FROM
+  cities;
+SELECT
+  name,
+  max(prcp)
+FROM
+  weather,
+  cities
+WHERE
+  weather.city = cities.abbr
+GROUP BY
+  name;
