@@ -25,9 +25,10 @@ SELECT
        4]];
   SELECT ARRAY[[1,2],
   [3,4]];
-  CREATE TABLE arr(f1 int[],
+  CREATE TABLE IF NOT EXISTS arr(f1 int[],
   f2 int []
 );
+TRUNCATE TABLE arr;
 INSERT INTO
   arr
 VALUES
@@ -58,3 +59,13 @@ VALUES
         FROM
           generate_series(1, 5) AS a(i)
       );
+    SELECT
+      row(1, 2.5, 'this is a test');
+    SELECT
+      row(arr.*, 42)
+    FROM
+      arr;
+    SELECT
+      row(arr.f1, arr.f2, 42)
+    FROM
+      arr;
